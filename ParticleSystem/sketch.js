@@ -3,7 +3,9 @@ class Particle {
     this.position = createVector(x, y);
     this.velocity = createVector(random(-1, 1), random(-2, 0));
     this.acceleration = createVector(0, 0.05);
-    this.lifespan = 255; // 입자 수명
+    this.lifespan = 255; 
+    this.color = color(random(255), random(255), random(255));
+    this.size = random(5, 20);
   }
 
   update() {
@@ -13,9 +15,9 @@ class Particle {
   }
 
   display() {
-    stroke(0, this.lifespan);
-    fill(0, this.lifespan);
-    ellipse(this.position.x, this.position.y, 10, 10);
+    noStroke();
+    fill(this.color, this.lifespan);
+    ellipse(this.position.x, this.position.y, this.size, this.size);
   }
 
   isDead() {
@@ -50,10 +52,10 @@ let system;
 function setup() {
   createCanvas(400, 400);
   system = new ParticleSystem(width / 2, height);
+  background(255);
 }
 
 function draw() {
-  background(255);
   system.addParticle();
   system.run();
 }

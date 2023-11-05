@@ -17,7 +17,15 @@ class Particle {
   display() {
     noStroke();
     fill(this.color, this.lifespan);
-    ellipse(this.position.x, this.position.y, this.size, this.size);
+    const x = this.position.x;
+    const y = this.position.y;
+    const s = this.size;
+    beginShape();
+    vertex(x, y - s * 2);
+    vertex(x - s * 2, y);
+    vertex(x, y + s * 2);
+    vertex(x + s * 2, y);
+    endShape(CLOSE);
   }
 
   isDead() {
